@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title id="page-title"></title>
+</head>
+<body>
+
+<script>
+
+const INVITACION = {
+
+  // 👶 DATOS DEL FESTEJO
+  nombre:         "BRIANNA",
+  nombreFin:      "BRIANNA",
+  fechaTexto:     "12.07.26",
+  fechaEvento:    "2026-07-12T14:00:00",
+
+  // 📍 LUGAR Y HORARIO
+ salon:           "SALÓN FUSIÓN 2 <br> AV. PUEBLOS ORIGINARIOS Y ALDO SERRANO",
+  horario:        "DE 14 A 16:30 HS",
+  fechaDisplay:   "12 DE JULIO",
+  linkMaps:       "https://www.google.com/maps/dir//Fusi%C3%B3n+2+Eventos,+Aldo+Serrano,+Av.+Pueblos+Originarios+%26,+Villa+Mar%C3%ADa,+C%C3%B3rdoba/@-32.3936744,-63.2606908,17z/data=!4m17!1m7!3m6!1s0x95cc4345f6c4d495:0x217c79acafc69ff3!2sFusi%C3%B3n+2+Eventos!8m2!3d-32.3936744!4d-63.2606908!16s%2Fg%2F11t_j8z47g!4m8!1m0!1m5!1m1!1s0x95cc4345f6c4d495:0x217c79acafc69ff3!2m2!1d-63.2606778!2d-32.3936904!3e0!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDYyOC4wIKXMDSoASAFQAw%3D%3D",
+
+  // 📅 CONFIRMAR ASISTENCIA
+  fechaLimiteConfirm: "09 DE JULIO",
+  linkConfirmarMama:  "https://wa.link/w6wa3g",
+  linkConfirmarPapa:  "https://wa.link/5iw6ev",
+
+  // 📅 AGENDAR EVENTO
+  linkAgendar:    "https://calendar.app.google/kRZUY8D617KFGhV98",
+
+  // 🎶 MÚSICA
+  archivoMusica:  "./FCMELODICO.mp3",
+
+  // 👗 DRESS CODE (dejá vacío si no tiene)
+  dresscode:      false,
+  dresscodeTexto: "",
+  dresscodeColores: "",
+
+  // 🏊 AVISO EXTRA AL FINAL
+  quote:          false,
+  quoteTexto:     "",
+
+  // 💌 MENSAJE PRINCIPAL
+  mensajePrincipal: "TE ESPERO PARA FESTEJAR MI PRIMER AÑITO",
+
+  // 🖼️ FOTOS
+  fotos: {
+    galeria1: ["./img/1.png", "./img/1.png", "./img/1.png", "./img/1.png"],
+    galeria2: ["./img/2.png", "./img/3.png", "./img/4.png", "./img/5.png"],
+    galeria3: ["./img/6.png", "./img/6.png", "./img/6.png", "./img/6.png"],
+  },
+
+  // 🔗 REDES SOCIALES VOY (no tocar)
+  igVoy:       "https://www.instagram.com/voyinvitacionesweb/",
+  fbVoy:       "https://www.facebook.com/profile.php?id=100092759319773&sk=grid",
+  emailVoy:    "mailto:voy.invitacionesweb@gmail.com",
+};
+
+// ════════════════════════════════════════════════════════════
+//  🚫
+// ════════════════════════════════════════════════════════════
+
+document.getElementById("page-title").textContent = INVITACION.nombre;
+
+function render() {
+  document.body.innerHTML = `
+    <header>
+      <div class="header-info">
+        <div data-aos="fade-up" class="infoimportante">
+          <img src="./img/face.png" alt="">
+          <a class="boton" target="_blank" href="${INVITACION.linkAgendar}">AGENDAR</a>
+        </div>
+      </div>
+    </header>
+
+    <div data-aos="fade-up" class="countdown">
+      <p>FALTAN:</p>
+      <div id="clock"></div>
+    </div>
+
+    <div data-aos="fade-up" class="fecha">
+      <img src="./img/fecha.png" alt="">
+    </div>
+
+    <div class="galeria">
+      ${INVITACION.fotos.galeria1.map((f, i) => `<img class="f${i+1}" src="${f}" alt="foto">`).join('')}
+    </div>
+
+    <div class="segundo">
+      <p data-aos="fade-up">
+        ${INVITACION.mensajePrincipal}<br><br>
+        🎉 ${INVITACION.fechaDisplay}<br>
+        ⏰ ${INVITACION.horario}<br>
+        📍 ${INVITACION.salon}<br><br>
+        HACE CLICK PARA SABER CÓMO LLEGAR
+      </p>
+      <a data-aos="fade-up" class="boton2" target="_blank" href="${INVITACION.linkMaps}">CÓMO LLEGAR</a>
+    </div>
+
+    <div class="galeria2">
+      ${INVITACION.fotos.galeria2.map(f => `<img class="f1" src="${f}" alt="foto">`).join('')}
+    </div>
+
+    ${INVITACION.dresscode ? `
+    <div class="DRESSCODE">
+      <H2>DRESS CODE</H2>
+      <p data-aos="fade-up">${INVITACION.dresscodeTexto}</p><br>
+      <P>${INVITACION.dresscodeColores}</P>
+      <ul>
+        <li class="li1"></li>
+        <li class="li2"></li>
+        <li class="li3"></li>
+        <li class="li4"></li>
+        <li class="li5"></li>
+        <li class="li6"></li>
+      </ul>
+    </div>` : ''}
+
+    <main>
+      <div class="main-bloque">
+        <img data-aos="fade-up" src="./figuras/icon-3.png" alt="">
+        <p data-aos="fade-up">TU PRESENCIA ES MUY IMPORTANTE, NO OLVIDES CONFIRMAR ASISTENCIA CON MIS PAPIS ANTES DEL ${INVITACION.fechaLimiteConfirm}.</p>
+        <a data-aos="fade-up" class="boton" target="_blank" href="${INVITACION.linkConfirmarMama}">CONFIRMAR CON MAMÁ</a>
+        
+        <a data-aos="fade-up" class="boton" target="_blank" href="${INVITACION.linkConfirmarPapa}">CONFIRMAR CON PAPÁ</a>
+      </div>
+    </main>
+
+    <div class="galeria">
+      ${INVITACION.fotos.galeria3.map((f, i) => `<img class="f${i+1}" src="${f}" alt="foto">`).join('')}
+    </div>
+
+    ${INVITACION.quote ? `
+    <div class="quote">
+      <p>${INVITACION.quoteTexto}</p>
+    </div>` : ''}
+
+    <div class="end">
+      <div><img src="./figuras/icon-1.png" alt=""></div>
+      <div>
+        <h2 data-aos="fade-up">${INVITACION.nombreFin}</h2>
+        <H3 data-aos="fade-up">${INVITACION.fechaTexto}</H3>
+      </div>
+      <div><img class="espejo" src="./figuras/icon-1.png" alt=""></div>
+    </div>
+
+    <div class="audiodiv">
+      <audio id="myAudio" preload="none">
+        <source src="${INVITACION.archivoMusica}" type="audio/mpeg">
+      </audio>
+      <div id="playPauseBtn" class="play">
+        <img src="./figuras/notamusical.png" alt="Icono de música">
+      </div>
+    </div>
+
+    <footer>
+      <div class="contenido">
+        <div><img src="./figuras/logo.png" alt=""></div>
+        <div>
+          <p>Hecho con &hearts;<br>
+          &#169 <b>VOY!</b>, invitaciones web.<br>
+          Todos los derechos reservados.</p>
+        </div>
+        <div class="contenido-list">
+          <ul>
+            <li><a target="_blank" href="${INVITACION.igVoy}"><i class="bi bi-instagram"></i></a></li>
+            <li><a target="_blank" href="${INVITACION.fbVoy}"><i class="bi bi-facebook"></i></a></li>
+            <li><a target="_blank" href="${INVITACION.emailVoy}"><i class="bi bi-envelope"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  `;
+
+  // Cuenta regresiva
+  const countdownScript = document.createElement('script');
+  countdownScript.src = 'countdown.js';
+  document.body.appendChild(countdownScript);
+ 
+// Música al primer gesto del usuario
+function playOnInteraction() {
+  const audio = document.getElementById("myAudio");
+  if (audio) {
+    audio.play().catch(e => console.warn("Autoplay bloqueado", e));
+  }
+  ["scroll", "click", "touchstart"].forEach(e =>
+    document.removeEventListener(e, playOnInteraction)
+  );
+}
+["scroll", "click", "touchstart"].forEach(e =>
+  document.addEventListener(e, playOnInteraction)
+);
+  // Reproductor
+  const repScript = document.createElement('script');
+  repScript.src = './reproductor.js';
+  document.body.appendChild(repScript);
+ 
+  // AOS animaciones
+  const aosScript = document.createElement('script');
+  aosScript.src = 'https://unpkg.com/aos@2.3.1/dist/aos.js';
+  aosScript.onload = () => AOS.init();
+  document.body.appendChild(aosScript);
+}
+ 
+render();
+</script>
+ 
+</body>
+</html>
